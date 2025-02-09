@@ -10,4 +10,4 @@ Author(s): **Megh Shukla**, Mathieu Salzmann, Alexandre Alahi
 
 <a href="https://deep-regression.github.io/files/papers/icml/TIC-TAC.pdf" target="_blank">[Paper]</a> 
 
-![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_poster.png)
+![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_Poster.png)
