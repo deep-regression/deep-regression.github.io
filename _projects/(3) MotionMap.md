@@ -7,7 +7,7 @@ description: "arXiv"
 
 # MotionMap: Representing Multimodality in Human Pose Forecasting
 
-Author(s): **Reyhaneh Hosseininejad\* and Megh Shukla\* **, Saeed Saadatnejad, Mathieu Salzmann, Alexandre Alahi  <br>
+Author(s): **Reyhaneh Hosseininejad and Megh Shukla**, Saeed Saadatnejad, Mathieu Salzmann, Alexandre Alahi  <br>
 
 
 <a href="https://deep-regression.github.io/files/papers/arxiv/MotionMap.pdf" target="_blank">[Paper]</a>
