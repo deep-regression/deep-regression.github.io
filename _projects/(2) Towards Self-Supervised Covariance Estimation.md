@@ -1,7 +1,7 @@
 ---
 name: "Towards Self-Supervised Covariance Estimation in Deep Heteroscedastic Regression"
 tools: [Method]
-image: https://raw.githubusercontent.com/meghshukla/meghshukla.github.io/master/files/images/toss.png
+image: https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/images/toss.png
 description: ICLR 2025
 ---
 
