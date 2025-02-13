@@ -10,4 +10,4 @@ description: "arXiv"
 Author(s): Reyhaneh Hosseininejad\* and **Megh Shukla\* **, Saeed Saadatnejad, Mathieu Salzmann, Alexandre Alahi  <br>
 
 
-<a href="https://meghshukla.github.io/files/papers/arxiv/MotionMap.pdf" target="_blank">[Paper]</a>
+<a href="https://deep-regression.github.io/files/papers/arxiv/MotionMap.pdf" target="_blank">[Paper]</a>
