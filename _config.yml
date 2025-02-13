@@ -81,14 +81,14 @@ defaults:
       type: "projects"
     values:
       layout: "page"
-  - scope:
-      path: ""
-      type: "posts"
-  - scope:
-      path: ""
-      type: "CV"
-    values:
-      layout: "page"
+  #- scope:
+  #    path: ""
+  #    type: "posts"
+  #- scope:
+  #    path: ""
+  #    type: "CV"
+   # values:
+   #   layout: "page"
   #  values:
   #    comments: false                                   # Set to true to enable disqus comments
 
