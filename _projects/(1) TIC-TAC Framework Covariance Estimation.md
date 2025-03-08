@@ -2,7 +2,7 @@
 name: "TIC-TAC: A Framework for Improved Covariance Estimation in Deep Heteroscedastic Regression"
 tools: [Method]
 image: https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/images/tic-tac.jpg
-description: ICML 2024
+description: ![ICML Logo](https://icml.cc/media/Press/ICML-logo.png)
 ---
 
 # TIC-TAC: A Framework for Improved Covariance Estimation in Deep Heteroscedastic Regression
