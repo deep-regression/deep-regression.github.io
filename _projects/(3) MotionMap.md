@@ -2,7 +2,7 @@
 name: "MotionMap: Representing Multimodality in Human Pose Forecasting"
 tools: [Application]
 image: https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/images/motionmap.png
-description: "arXiv"
+description: '<img src="https://na.eventscloud.com/file_uploads/33157a7e4788e837751f71d7fa44a8b7_CVPR_Nashville_FinalLogo.jpg" alt="CVPR Logo" style="width: 100px; height: auto;">'
 ---
 
 # MotionMap: Representing Multimodality in Human Pose Forecasting
