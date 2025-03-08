@@ -2,7 +2,7 @@
 name: "Towards Self-Supervised Covariance Estimation in Deep Heteroscedastic Regression"
 tools: [Method]
 image: https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/images/toss.png
-description: '<img src="https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations#/media/File:International_Conference_on_Learning_Representations.svg" alt="ICLR Logo" style="width: 100px; height: auto;">'
+description: '<img src="https://iclr.cc/static/core/img/ICLR-logo.svg" alt="ICLR Logo" style="width: 100px; height: auto;">'
 ---
 
 # Towards Self-Supervised Covariance Estimation in Deep Heteroscedastic Regression
