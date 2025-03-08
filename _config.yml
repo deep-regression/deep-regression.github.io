@@ -3,10 +3,10 @@ title               : Deep Regression
 description         : |
                       <strong style="font-size: 24px;">Deep Heteroscedastic Regression</strong><br>
                        <em style="font-size: 20px;">Methods and Applications</em>
-                      <br><br><br><br><br>
-                      We study deep regression, a framework powering popular machine learning tasks such as uncertainty estimation and generative modelling. We propose different methodologies and explore applications across machine learning and vision. Our research is published in top-tier venues such as ICML, ICLR and CVPR. <br><br><br><br><br>
-                      Megh Shukla, Mathieu Salzmann, Alexandre Alahi <br>
-                      École Polytechnique Fédérale de Lausanne (EPFL) <br><br>
+                      <br><br><br><br>
+                      We study deep regression, a framework powering popular machine learning tasks such as uncertainty estimation and generative modelling. We propose different methodologies and explore applications across machine learning and vision. Our research is published in top-tier venues such as ICML, ICLR and CVPR. <br><br><br><br>
+                      Megh Shukla         Mathieu Salzmann         Alexandre Alahi <br><br>
+                      '<img src="https://www.epfl.ch/about/overview/wp-content/themes/wp-theme-2018/assets/svg/epfl-logo.svg" alt="EPFL Logo" style="width: 200px; height: auto;">'
 
 
 baseurl             : ""                                # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
