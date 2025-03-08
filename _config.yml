@@ -49,6 +49,11 @@ author:
 # youtube           : your_channel_name
 # keybase           : your_username
 
+
+### Posts ###
+permalink: /posts/:title
+
+
 ### Collections ###
 collections:
   projects:
