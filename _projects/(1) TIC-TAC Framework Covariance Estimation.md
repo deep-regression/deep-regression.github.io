@@ -41,7 +41,7 @@ Therefore, we propose a solution that directly improves covariance estimation us
 ## Taylor Induced Covariance
 
 With TIC, we propose a new method to parameterise the covariance. Specifically, TIC ties the randomness of the prediction to its gradient and curvature. We do this by representing the input using a stochastic neighbourhood, allowing us to take the second order Taylor polynomial. Specifically, if ε is our stochastic neighborhood, we get
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/taylor_eq.png?raw=true" alt="Taylor Polynomial" style="width: 30%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/taylor_eq.png?raw=true" alt="Taylor Polynomial" style="width: 40%; height: auto;">
 We solve for the covariance of this polynomial through simplifications and some help from our friend, the [Matrix Cookbook](https://www2.imm.dtu.dk/pubdb/edoc/imm3274.pdf). The detailed derivations is provided in Section 3. This gives us the final covariance:
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic.png?raw=true" alt="Taylor Induced Covariance" style="width: 50%; height: auto;">
 The presence of the jacobian and hessian allow us to define the covariance using the gradient and curvature of the prediction. We formalize this in the algorithm below.
@@ -54,7 +54,10 @@ While we have a new method for covariance estimation, how do we evaluate the cov
 
 Moreover, TAC and the log-likelihood are complementary: while log-likelihood is a measure of optimisation, TAC is a measure of accuracy of the learnt correlations.
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac.png?raw=true" alt="TAC" style="width: 30%; height: auto;"> <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac-algo.png?raw=true" alt="TAC Algo" style="width: 30%; height: auto;">
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac.png?raw=true" alt="TAC" style="width: 40%; height: auto;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac-algo.png?raw=true" alt="TAC Algo" style="width: 40%; height: auto;">
+</div>
 
 <br><br>
 
