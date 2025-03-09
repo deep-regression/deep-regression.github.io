@@ -16,7 +16,14 @@ International Conference on Machine Learning (ICML) 2024, Vienna
 "></a> <a href="https://github.com/vita-epfl/TIC-TAC"><img alt="Presentation" src="https://img.shields.io/badge/Presentation%20(link)%20-%20white?style=flat&logo=googleslides&logoColor=white&logoSize=auto&color=%23C78C06
 "></a><br><br><br>
 
-
+<b>
+  {%- assign words = content | number_of_words -%}
+  {%- if words < 360 -%}
+    Less than 1 min read time
+  {%- else -%}
+    {{ words | divided_by: 180 }} mins read time
+  {%- endif -%}
+  </b>
 
 ## Problem Statement
 
@@ -119,11 +126,11 @@ To evaluate the learnt covariance using ground truth, we setup an experiment wit
 
 ## Conclusion
 
-Our study is best concluded by the following points
-🔹 Old methods struggle with accurately predicting heteroscedasticity / uncertainty.
-🔹 TIC improves this by mathematically modeling how predictions change.
-🔹 TAC provides a better way to check if the uncertainty prediction is correct.
-🔹 The result? More reliable models that learn faster and make better predictions!
+Our study is best concluded by the following points:<br>
+🔹 Old methods struggle with accurately predicting heteroscedasticity / uncertainty.<br>
+🔹 TIC improves this by mathematically modeling how predictions change.<br>
+🔹 TAC provides a better way to check if the uncertainty prediction is correct.<br>
+🔹 The result? More reliable models that learn faster and make better predictions!<br>
 
 
 <br><br>
@@ -151,6 +158,7 @@ If our work is useful, please consider citing the accompanying paper and starrin
   publisher = {PMLR}
 }
 ```
+<br>
 
 ![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_Poster.png)
 
