@@ -72,12 +72,52 @@ We conduct experiments across real and synthetic datasets, spanning univariate a
 
 
 
-We learn constant and varying amplitude sinusoidal with heteroscedastic noise. We observe that TIC accurately learns the variance and improves convergence of the negative log-likelihood. We also observe that modifications to the negative log-likelihood which are not valid distributions may result in unreliable variance estimates.
+We learn constant and varying amplitude sinusoidal with heteroscedastic noise. We observe that TIC accurately learns the variance and improves convergence of the negative log-likelihood. We also observe that modifications to the negative log-likelihood which are not valid distributions may result in unreliable variance estimates. 
 
 </details>
 
+<br><br>
 
-### Multivariate
+<details>
+  <summary> <strong>Multivariate</strong> </summary>
+
+  <div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/mv-schema.png?raw=true" alt="TAC" style="width: 40%; height: auto;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/mv-results.png?raw=true" alt="TAC Algo" style="width: 40%; height: auto;">
+    </div> 
+ 
+To evaluate the learnt covariance using ground truth, we setup an experiment with synthetic samples. The schematic is specified above, which allows us to draw samples from heteroscedastic distributions. We compare different methods simulating increasing dimensionality of the data. Our quantitative results show that the gap between TIC and other methods widens.
+
+</details>
+
+<br><br>
+
+<details>
+    <summary> <strong>UCI Regression</strong> </summary>
+
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/uci.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+
+    We conduct experiments on datasets from the UCI Regression repository, and report significant performance gains on most datasets. A curious observation can be made with the Naval dataset, where TIC does not perform as well as other baselines. We note that TIC may not be suitable if all samples have a low degree of variance. A low degree of variance (as indicated by the likelihood) results in accurate mean fits, which implies that small gradients are being backpropagated, and in turn affecting the TIC parameterization. However, we argue that datasets with a small degree of variance may not benefit from heteroscedastic modelling.
+
+</details>
+
+<br><br>
+
+<details>
+    <summary> <strong>2D Human Pose Estimation</strong> </summary>
+
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-qual.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+
+    We use two architectures: ViTPose and Stacked Hourglass for our studies in human pose estimation. We provide qualitative and quantitative results and show that TIC accurately learns the correlations underlying various human joints. Our qualitative results specifically show that TIC accurately localises the head given the location of other joints. This is especially true for complex poses. Our quantitative results show that TIC scales to both, convolutional and transformer based architectures and outperforms state-of-the-art in learning correlations across various human joints.
+
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-quant.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+
+
+</details>
+
+<br><br>
+
+## Conclusion
 
 ![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_Poster.png)
 
