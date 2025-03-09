@@ -1,7 +1,7 @@
 ---
 name: "TIC-TAC: A Framework for Improved Covariance Estimation in Deep Heteroscedastic Regression"
 tools: [Method]
-image: https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/images/tic-tac.jpg
+image: https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/images/tictac/tic-tac.jpg
 description: '<img src="https://icml.cc/media/Press/ICML-logo.svg" alt="ICML Logo" style="width: 100px; height: auto;">'
 ---
 
@@ -34,18 +34,18 @@ While there have been multiple attempts to address this, we argue that many exis
 
 Therefore, we propose a solution that directly improves covariance estimation using a more mathematically grounded approach. With the Taylor Induced Covariance (TIC), we tie the predicted covariance to the gradient and curvature of the mean (target) estimator. Intuitively, The gradient and curvature quantify the variation in the prediction within a small neighborhood of the input. Large changes in the target for small changes in the neighborhood of the input should imply larger variance of the prediction.
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic-intuition.png?raw=true" alt="TIC-TAC sinusoidal" style="width: 30%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/intuition.png?raw=true" alt="TIC-TAC sinusoidal" style="width: 30%; height: auto;">
 
 <br><br>
 
 ## Taylor Induced Covariance
 
 With TIC, we propose a new method to parameterise the covariance. Specifically, TIC ties the randomness of the prediction to its gradient and curvature. We do this by representing the input using a stochastic neighbourhood, allowing us to take the second order Taylor polynomial. Specifically, if ε is our stochastic neighborhood, we get
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/taylor_eq.png?raw=true" alt="Taylor Polynomial" style="width: 40%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/taylor_eq.png?raw=true" alt="Taylor Polynomial" style="width: 40%; height: auto;">
 We solve for the covariance of this polynomial through simplifications and some help from our friend, the [Matrix Cookbook](https://www2.imm.dtu.dk/pubdb/edoc/imm3274.pdf). The detailed derivations is provided in Section 3. This gives us the final covariance:
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic.png?raw=true" alt="Taylor Induced Covariance" style="width: 50%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/tic.png?raw=true" alt="Taylor Induced Covariance" style="width: 50%; height: auto;">
 The presence of the jacobian and hessian allow us to define the covariance using the gradient and curvature of the prediction. We formalize this in the algorithm below.
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/TIC-algorithm.jpg?raw=true" alt="TIC algorithm" style="width: 50%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/TIC-algorithm.jpg?raw=true" alt="TIC algorithm" style="width: 50%; height: auto;">
 <br><br>
 
 ## Task Agnostic Correlations
@@ -55,8 +55,8 @@ While we have a new method for covariance estimation, how do we evaluate the cov
 *Moreover, TAC and the log-likelihood are complementary: while log-likelihood is a measure of optimisation, TAC is a measure of accuracy of the learnt correlations.*
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac.png?raw=true" alt="TAC" style="width: 40%; height: auto;">
-  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac-algo.png?raw=true" alt="TAC Algo" style="width: 40%; height: auto;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/tac.png?raw=true" alt="TAC" style="width: 40%; height: auto;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/tac-algo.png?raw=true" alt="TAC Algo" style="width: 40%; height: auto;">
 </div>
 
 <br><br>
@@ -68,7 +68,7 @@ We conduct experiments across real and synthetic datasets, spanning univariate a
 <details>
   <summary> <strong>Univariate</strong> </summary>
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic-univariate.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/univariate.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
 
 
 
