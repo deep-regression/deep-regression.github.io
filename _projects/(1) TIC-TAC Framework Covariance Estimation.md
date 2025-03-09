@@ -34,20 +34,30 @@ While there have been multiple attempts to address this, we argue that many exis
 
 Therefore, we propose a solution that directly improves covariance estimation using a more mathematically grounded approach. With the Taylor Induced Covariance (TIC), we tie the predicted covariance to the gradient and curvature of the mean (target) estimator. Intuitively, The gradient and curvature quantify the variation in the prediction within a small neighborhood of the input. Large changes in the target for small changes in the neighborhood of the input should imply larger variance of the prediction.
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic-intuition.png?raw=true" alt="TIC-TAC sinusoidal" style="width: 50%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic-intuition.png?raw=true" alt="TIC-TAC sinusoidal" style="width: 30%; height: auto;">
 
 <br><br>
 
 ## Taylor Induced Covariance
 
-With TIC, we propose a new method to parameterise the covariance. Specifically, TIC ties the randomness of the prediction to its gradient and curvature. We do this by representing the input using a stochastic neighbourhood, allowing us to take the second order Taylor polynomial. Specifically, if $\varepsilon$ is our stochastic neighborhood, we get
+With TIC, we propose a new method to parameterise the covariance. Specifically, TIC ties the randomness of the prediction to its gradient and curvature. We do this by representing the input using a stochastic neighbourhood, allowing us to take the second order Taylor polynomial. Specifically, if ε is our stochastic neighborhood, we get
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/taylor_eq.png?raw=true" alt="Taylor Polynomial" style="width: 50%; height: auto;">
 We solve for the covariance of this polynomial through simplifications and some help from our friend, the [Matrix Cookbook](https://www2.imm.dtu.dk/pubdb/edoc/imm3274.pdf). The detailed derivations is provided in Section 3. This gives us the final covariance:
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic.png?raw=true" alt="Taylor Induced Covariance" style="width: 50%; height: auto;">.
-The presence of the jacobian and hessian allow us to define the covariance using the gradient and curvature of the prediction.
-
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic.png?raw=true" alt="Taylor Induced Covariance" style="width: 50%; height: auto;">
+The presence of the jacobian and hessian allow us to define the covariance using the gradient and curvature of the prediction. We formalize this in the algorithm below.
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/TIC-algorithm.jpg?raw=true" alt="TIC algorithm" style="width: 50%; height: auto;">
 <br><br>
 
 ## Task Agnostic Correlations
+
+While we have a new method for covariance estimation, how do we evaluate the covariance? Remember, we do not have labels for the covariance! With TAC, we propose a new metric to directly evaluate the covariance. Specifically, we reason that the goal of estimating the covariance is to encode the relation between the target variables. Therefore, partially observing a set of correlated targets should improve the prediction of the hidden targets since by definition the covariance encodes this correlation. TAC measures this improvement as an accuracy measure for the learnt correlations. We do this by conditioning the predicted target distribution over all but one ground truth, and observe the improvement in the target corresponding to the hidden target variable. If the correlations are learnt correctly, the prediction should update towards the hidden ground truth. By contrast, incorrect correlations move the prediction away from the ground truth. We formalize this through a schematic and algorithm 
+
+Moreover, TAC and the log-likelihood are complementary: while log-likelihood is a measure of optimisation, TAC is a measure of accuracy of the learnt correlations.
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac.png?raw=true" alt="TAC" style="width: 40%; height: auto;"> <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac-algo.png?raw=true" alt="TAC Algo" style="width: 40%; height: auto;">
+
+<br><br>
+
+## Experiments
 
 ![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_Poster.png)
