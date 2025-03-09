@@ -24,6 +24,6 @@ Deep heteroscedastic regression learns the mean and (co-)variance of the predict
 
 We argue that this happens because the network that estimates the covariance does not truly learn the randomness of the prediction. Indeed, without supervision, the predicted (co-)variance may be arbitrary and incorrectly minimises the likelihood.
 
-![TIC-TAC-pull](https://github.com/vita-epfl/TIC-TAC/blob/main/TIC-TAC_gif.gif)
+![TIC-TAC-pull](https://github.com/vita-epfl/TIC-TAC/blob/main/TIC-TAC_gif.gif?raw=true)
 
 ![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_Poster.png)
