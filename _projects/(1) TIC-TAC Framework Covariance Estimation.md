@@ -18,7 +18,7 @@ International Conference on Machine Learning (ICML) 2024, Vienna
 
 
 
-### Problem Statement
+## Problem Statement
 
 When heteroscedastic models make predictions, they often estimate:
 1. The mean value of the target.
@@ -34,9 +34,20 @@ While there have been multiple attempts to address this, we argue that many exis
 
 Therefore, we propose a solution that directly improves covariance estimation using a more mathematically grounded approach. With the Taylor Induced Covariance (TIC), we tie the predicted covariance to the gradient and curvature of the mean (target) estimator. Intuitively, The gradient and curvature quantify the variation in the prediction within a small neighborhood of the input. Large changes in the target for small changes in the neighborhood of the input should imply larger variance of the prediction.
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic-intuition.png?raw=true" alt="TIC-TAC-sinusoidal" style="width: 50%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic-intuition.png?raw=true" alt="TIC-TAC sinusoidal" style="width: 50%; height: auto;">
 
 <br><br>
-### Taylor Induced Covariance
+
+## Taylor Induced Covariance
+
+With TIC, we propose a new method to parameterise the covariance. Specifically, TIC ties the randomness of the prediction to its gradient and curvature. We do this by representing the input using a stochastic neighbourhood, allowing us to take the second order Taylor polynomial. Specifically, if $\varepsilon$ is our stochastic neighborhood, we get
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/taylor_eq.png?raw=true" alt="Taylor Polynomial" style="width: 50%; height: auto;">
+We solve for the covariance of this polynomial through simplifications and some help from our friend, the [Matrix Cookbook](https://www2.imm.dtu.dk/pubdb/edoc/imm3274.pdf). The detailed derivations is provided in Section 3. This gives us the final covariance:
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic.png?raw=true" alt="Taylor Induced Covariance" style="width: 50%; height: auto;">.
+The presence of the jacobian and hessian allow us to define the covariance using the gradient and curvature of the prediction.
+
+<br><br>
+
+## Task Agnostic Correlations
 
 ![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_Poster.png)

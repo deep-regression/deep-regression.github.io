@@ -96,6 +96,9 @@ defaults:
   #  values:
   #    comments: false                                   # Set to true to enable disqus comments
 
+katex:
+  enable_on_post: true
+  enable_on_page: true
 
 ### Exclude from processing ###
 exclude:
