@@ -65,9 +65,12 @@ While we have a new method for covariance estimation, how do we evaluate the cov
 
 We conduct experiments across real and synthetic datasets, spanning univariate and multivariate analysis. Our results show that TIC not only accurately learns the covariance, but also leads to improved convergence of the negative log-likelihood.
 
-### Univariate
+<details>
+  <summary> <strong>Univariate</strong> </summary>
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic-univariate.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+
+</details>
 
 We learn constant and varying amplitude sinusoidal with heteroscedastic noise. We observe that TIC accurately learns the variance and improves convergence of the negative log-likelihood. We also observe that modifications to the negative log-likelihood which are not valid distributions may result in unreliable variance estimates.
 
