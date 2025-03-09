@@ -55,8 +55,8 @@ While we have a new method for covariance estimation, how do we evaluate the cov
 *Moreover, TAC and the log-likelihood are complementary: while log-likelihood is a measure of optimisation, TAC is a measure of accuracy of the learnt correlations.*
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/tac.png?raw=true" alt="TAC" style="width: 40%; height: auto;">
-  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/tac-algo.png?raw=true" alt="TAC Algo" style="width: 40%; height: auto;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/tac.png?raw=true" alt="TAC" style="width: 45%; height: auto;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/tac-algo.png?raw=true" alt="TAC Algo" style="width: 45%; height: auto;">
 </div>
 
 <br><br>
@@ -68,7 +68,7 @@ We conduct experiments across real and synthetic datasets, spanning univariate a
 <details>
   <summary> <strong>Univariate</strong> </summary>
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/univariate.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/univariate.png?raw=true" alt="TIC univariate" style="width: 100%; height: auto;">
 
 
 
@@ -82,8 +82,8 @@ We learn constant and varying amplitude sinusoidal with heteroscedastic noise. W
   <summary> <strong>Multivariate</strong> </summary>
 
   <div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/mv-schema.png?raw=true" alt="TAC" style="width: 40%; height: auto;">
-  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/mv-results.png?raw=true" alt="TAC Algo" style="width: 40%; height: auto;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/mv-schema.png?raw=true" alt="TAC" style="width: 45%; height: auto;">
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/mv-results.png?raw=true" alt="TAC Algo" style="width: 45%; height: auto;">
     </div> 
  
 To evaluate the learnt covariance using ground truth, we setup an experiment with synthetic samples. The schematic is specified above, which allows us to draw samples from heteroscedastic distributions. We compare different methods simulating increasing dimensionality of the data. Our quantitative results show that the gap between TIC and other methods widens.
@@ -95,7 +95,7 @@ To evaluate the learnt covariance using ground truth, we setup an experiment wit
 <details>
     <summary> <strong>UCI Regression</strong> </summary>
 
-    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/uci.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/uci.png?raw=true" alt="TIC univariate" style="width: 199%; height: auto;">
 
     We conduct experiments on datasets from the UCI Regression repository, and report significant performance gains on most datasets. A curious observation can be made with the Naval dataset, where TIC does not perform as well as other baselines. We note that TIC may not be suitable if all samples have a low degree of variance. A low degree of variance (as indicated by the likelihood) results in accurate mean fits, which implies that small gradients are being backpropagated, and in turn affecting the TIC parameterization. However, we argue that datasets with a small degree of variance may not benefit from heteroscedastic modelling.
 
@@ -106,11 +106,11 @@ To evaluate the learnt covariance using ground truth, we setup an experiment wit
 <details>
     <summary> <strong>2D Human Pose Estimation</strong> </summary>
 
-    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-qual.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-qual.png?raw=true" alt="TIC univariate" style="width: 100%; height: auto;">
 
     We use two architectures: ViTPose and Stacked Hourglass for our studies in human pose estimation. We provide qualitative and quantitative results and show that TIC accurately learns the correlations underlying various human joints. Our qualitative results specifically show that TIC accurately localises the head given the location of other joints. This is especially true for complex poses. Our quantitative results show that TIC scales to both, convolutional and transformer based architectures and outperforms state-of-the-art in learning correlations across various human joints.
 
-    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-quant.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-quant.png?raw=true" alt="TIC univariate" style="width: 100%; height: auto;">
 
 
 </details>
@@ -118,6 +118,39 @@ To evaluate the learnt covariance using ground truth, we setup an experiment wit
 <br><br>
 
 ## Conclusion
+
+Our study is best concluded by the following points
+🔹 Old methods struggle with accurately predicting heteroscedasticity / uncertainty.
+🔹 TIC improves this by mathematically modeling how predictions change.
+🔹 TAC provides a better way to check if the uncertainty prediction is correct.
+🔹 The result? More reliable models that learn faster and make better predictions!
+
+
+<br><br>
+
+## Acknowledgement
+
+We thank the reviewers, for their valuable comments and insights. We also thank Reyhaneh Hosseininejad for her help in preparing the paper.
+
+This research is funded by the Swiss National Science Foun- dation (SNSF) through the project *Narratives from the Long Tail: Transforming Access to Audiovisual Archives (Grant: CRSII5 198632)*. The project description is available on: [https://www.futurecinema.live/project/](https://www.futurecinema.live/project/)
+
+<br><br>
+
+## Citation
+
+If our work is useful, please consider citing the accompanying paper and starring our code on GitHub!
+
+```
+@InProceedings{shukla2024tictac,
+  title = {TIC-TAC: A Framework for Improved Covariance Estimation in Deep Heteroscedastic Regression},
+  author = {Shukla, Megh and Salzmann, Mathieu and Alahi, Alexandre},
+  booktitle = {Proceedings of the 41th International Conference on Machine Learning},
+  year = {2024},
+  series = {Proceedings of Machine Learning Research},
+  month = {21--27 Jul},
+  publisher = {PMLR}
+}
+```
 
 ![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_Poster.png)
 
