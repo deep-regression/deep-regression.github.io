@@ -5,26 +5,3 @@ layout: default
 <div class="col-lg-10 mx-auto mt-5 markdown-body">
   {{ content }}
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const detailsElements = document.querySelectorAll("details");
-  
-      detailsElements.forEach((details) => {
-        details.addEventListener("toggle", (event) => {
-          if (details.open) {
-            details.style.height = details.scrollHeight + "px";
-          } else {
-            details.style.height = "0px";
-          }
-        });
-  
-        // Set initial height
-        if (details.open) {
-          details.style.height = details.scrollHeight + "px";
-        } else {
-          details.style.height = "0px";
-        }
-      });
-    });
-  </script>
