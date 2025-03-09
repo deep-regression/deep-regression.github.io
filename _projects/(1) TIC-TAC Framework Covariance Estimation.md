@@ -52,7 +52,7 @@ The presence of the jacobian and hessian allow us to define the covariance using
 
 While we have a new method for covariance estimation, how do we evaluate the covariance? Remember, we do not have labels for the covariance! With TAC, we propose a new metric to directly evaluate the covariance. Specifically, we reason that the goal of estimating the covariance is to encode the relation between the target variables. Therefore, partially observing a set of correlated targets should improve the prediction of the hidden targets since by definition the covariance encodes this correlation. TAC measures this improvement as an accuracy measure for the learnt correlations. We do this by conditioning the predicted target distribution over all but one ground truth, and observe the improvement in the target corresponding to the hidden target variable. If the correlations are learnt correctly, the prediction should update towards the hidden ground truth. By contrast, incorrect correlations move the prediction away from the ground truth. We formalize this through a schematic and algorithm 
 
-Moreover, TAC and the log-likelihood are complementary: while log-likelihood is a measure of optimisation, TAC is a measure of accuracy of the learnt correlations.
+*Moreover, TAC and the log-likelihood are complementary: while log-likelihood is a measure of optimisation, TAC is a measure of accuracy of the learnt correlations.*
 
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tac.png?raw=true" alt="TAC" style="width: 40%; height: auto;">
@@ -63,4 +63,19 @@ Moreover, TAC and the log-likelihood are complementary: while log-likelihood is 
 
 ## Experiments
 
+<details>
+  <summary>Click to expand</summary>
+
+We conduct experiments across real and synthetic datasets, spanning univariate and multivariate analysis. Our results show that TIC not only accurately learns the covariance, but also leads to improved convergence of the negative log-likelihood.
+
+### Univariate
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tic-univariate.png?raw=true" alt="TIC univariate" style="width: 75%; height: auto;">
+
+We learn constant and varying amplitude sinusoidal with heteroscedastic noise. We observe that TIC accurately learns the variance and improves convergence of the negative log-likelihood. We also observe that modifications to the negative log-likelihood which are not valid distributions may result in unreliable variance estimates.
+
+### Multivariate
+
 ![TIC-TAC_Poster](https://raw.githubusercontent.com/deep-regression/deep-regression.github.io/master/files/papers/icml/TIC-TAC_Poster.png)
+
+</details>
