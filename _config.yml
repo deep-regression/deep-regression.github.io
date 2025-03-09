@@ -8,7 +8,7 @@ description         : |
                       <span style="display: inline-block; width: 200px;">Megh Shukla</span>
                       <span style="display: inline-block; width: 200px;">Mathieu Salzmann</span>
                       <span style="display: inline-block; width: 200px;">Alexandre Alahi</span> <br><br>
-                      '<img src="https://www.epfl.ch/about/overview/wp-content/themes/wp-theme-2018/assets/svg/epfl-logo.svg" alt="EPFL Logo" style="width: 150px; height: auto;">'
+                      '<img src="https://www.epfl.ch/about/overview/wp-content/themes/wp-theme-2018/assets/svg/epfl-logo.svg" alt="EPFL Logo" style="width: 125px; height: auto;">'
 
 
 baseurl             : ""                                # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
