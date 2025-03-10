@@ -37,9 +37,10 @@
   {% for project in site.projects %}
 
     {%- assign project_type  = "local" -%}
-    {%- assign project_id    = project.name | split: '-' | last | slugify -%} <!-- Remove number prefix -->
+    {%- assign project_name_parts = project.name | split: '-' -%}
+    {%- assign project_id    = project_name_parts[1] | slugify -%} <!-- Remove number prefix -->
     {%- assign project_img   = project.image -%}
-    {%- assign project_name  = project.name | split: '-' | last | slugify -%} <!-- Remove number prefix -->
+    {%- assign project_name  = project_name_parts[1] | slugify -%} <!-- Remove number prefix -->
     {%- assign project_desc  = project.description -%}
     {%- assign project_tools = project.tools -%}
 
