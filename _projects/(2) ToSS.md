@@ -22,10 +22,15 @@ International Conference on Learning Representations (ICLR) 2025, Singapore
 
 ## Problem Statement
 
-In our [previous work](https://deep-regression.github.io/projects/1-tic-tac-framework-covariance-estimation), we addressed the challenge of unsupervised covariance estimation through better parameterization (TIC) of the covariance. However, TIC requires significant computational resources; computing the hessian is expensive. While there can be multiple approaches to mitigate this, such as using just the gradient or utilizing smaller models, the inherent challenges still remain.
+In our [previous work](https://deep-regression.github.io/research/tic-tac), we addressed the challenge of unsupervised covariance estimation through better parameterization (TIC) of the covariance. However, TIC requires significant computational resources as computing the hessian is expensive. While there can be multiple approaches to mitigate this, such as using just the gradient or utilizing smaller models, the inherent challenges still remain.
 
 These challenges stems from a key limitation of deep heteroscedastic regression: estimating sample-dependent covariance in an unsupervised manner. Without labels, the covariance estimator solely relies on patterns in the residuals across various samples and may be inaccurate. Therefore, can we use self-supervision to improve covariance estimation? Specifically, we ask: 
 1. How to supervise covariance estimation when annotations are available?
 1. How to generate pseudo-labels when annotations are not available?
 
 <br><br>
+
+## Supervision
+
+We turn to the KL divergence for supervising the learning of the covariance, which is a popular measure to quantify the difference between two distributions. Moreover, the KL divergence gives rise to popular machine learning objectives such as the cross entropy and negative log-likelihood. The KL divergence between two gaussian distributions $p$ and $q$ is defined as
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/KL.png?raw=true" alt="KL-simple" style="width: 50%; height: auto;">
