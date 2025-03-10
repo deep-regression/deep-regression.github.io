@@ -38,7 +38,8 @@
   {% for project in site.projects %}
 
     {%- assign project_type  = "local" -%}
-    {%- assign project_id    = project.name | slugify -%}
+    {%- assign project_name_clean = project.name | replace_first: site.regex_number_prefix, '' -%}
+    {%- assign project_id = project_name_clean | slugify -%}
     {%- assign project_img   = project.image -%}
     {%- assign project_name  = project.name -%}
     {%- assign project_desc  = project.description -%}

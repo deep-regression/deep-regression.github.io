@@ -57,6 +57,10 @@ author:
 permalink: /posts/:title
 
 
+# Define regex separately
+regex_number_prefix: '^\d+-'
+
+
 ### Collections ###
 collections:
   projects:
