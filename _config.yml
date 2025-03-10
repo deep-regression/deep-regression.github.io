@@ -61,7 +61,7 @@ permalink: /posts/:title
 collections:
   projects:
     output: true
-    permalink: /research/:name
+    permalink: /research/:slug
 
   CV:
     output: true
