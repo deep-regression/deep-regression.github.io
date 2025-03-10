@@ -6,6 +6,17 @@ image: https://raw.githubusercontent.com/deep-regression/deep-regression.github.
 description: '<img src="https://iclr.cc/static/core/img/ICLR-logo.svg" alt="ICLR Logo" style="width: 100px; height: auto;">'
 ---
 
+<script>
+    MathJax = {
+        tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+    };
+    </script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>  
+
+
 # Towards Self-Supervised Covariance Estimation in Deep Heteroscedastic Regression
 <br><br>
 **Megh Shukla**, Aziz Shameem, Mathieu Salzmann, Alexandre Alahi  <br>
@@ -33,4 +44,4 @@ These challenges stems from a key limitation of deep heteroscedastic regression:
 ## Supervision
 
 We turn to the KL divergence for supervising the learning of the covariance, which is a popular measure to quantify the difference between two distributions. Moreover, the KL divergence gives rise to popular machine learning objectives such as the cross entropy and negative log-likelihood. The KL divergence between two gaussian distributions $p$ and $q$ is defined as
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/KL.png?raw=true" alt="KL-simple" style="width: 50%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/KL.png?raw=true" alt="KL-simple" style="width: 70%; height: auto;">
