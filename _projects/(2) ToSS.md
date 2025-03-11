@@ -60,11 +60,11 @@ A logical approach would be to replace each label with a distribution. Specifica
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/lemma1.png?raw=true" alt="Lemma 1" style="width: 70%; height: auto;">
 
-So what does this lemma imply? If we swap out $x_i, y_i$ with $x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$, *the predicted covariance is twice as much as the true covariance*. This also motivates the need for calibrating the KL divergence, such that the resulting optimal value is the same as the true covariance.
+So what does this lemma imply? If we swap out $x_i, y_i$ with $x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$, *the predicted covariance is twice as much as the true covariance*. This also motivates the need for calibrating the KL divergence such that the resulting optimal value is the same as the true covariance.
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/lemma1.png?raw=true" alt="Lemma 1" style="width: 70%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/calibratedKL.png?raw=true" alt="calibrated KL" style="width: 70%; height: auto;">
 
-Moreover, this solution truly allows the KL Divergence to act as a regularizer.
+With this formulation, $\bighat{\Sigma}_Y(x) \approx \Sigma_Y(x)$. Moreover, this solution truly allows the KL Divergence to act as a regularizer over the covariance. When the target covariance is unknown and cannot be set as the prior, the calibrated formulation gives the optimal solution $\bighat{\Sigma}_Y(x) \approx \frac{\Sigma^{(\texttt{prior})}_Y (X) + \Sigma_Y(x)}{2}$. We can observe this in the graphic below.
 
 <video class="responsive-video" controls loop autoplay muted>
   <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/videos/toss/homoscedastic.mp4?raw=true" type="video/mp4">
