@@ -52,7 +52,11 @@ These challenges stems from a key limitation of deep heteroscedastic regression:
 ## Supervision
 
 To gain intuition, we propose studying the simple task of learning a bivariate normal distribution, as shown below. Given samples from the unknown true distribution, how well do different supervision objectives optimize the predicted distribution to match the true distribution?
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/setup.png?raw=true" alt="setup" style="width: 40%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/setup.png?raw=true" alt="setup" style="width: 25%; height: auto;">
+
+<br>
+
+### KL Divergence
 
 We first turn to the KL divergence for supervising the learning of the covariance, which is a popular measure to quantify the difference between two distributions. Moreover, the KL divergence gives rise to popular machine learning objectives such as the cross entropy and negative log-likelihood. The KL divergence between two gaussian distributions $p$ and $q$ is defined as
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/KL.png?raw=true" alt="KL-simple" style="width: 70%; height: auto;">
@@ -67,20 +71,30 @@ So what does this lemma imply? If we swap out $(x_i, y_i)$ with $(x_i, \mathcal{
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/calibratedKL.png?raw=true" alt="calibrated KL" style="width: 70%; height: auto;">
 
-With this formulation, $\widehat{\Sigma}_Y(x) \approx \Sigma_Y(x)$. Moreover, this solution truly allows the KL Divergence to act as a regularizer over the covariance. When the target covariance is unknown and cannot be set as the prior, the calibrated formulation gives the optimal solution $\widehat{\Sigma}_Y(x) \approx \dfrac{\Sigma^{(\texttt{prior})}_Y (X) + \Sigma_Y(x)}{2}$. We can observe this in the graphic below.
+With this formulation, $\widehat{\Sigma}_Y(x) \approx \Sigma_Y(x)$. Moreover, this solution truly allows the KL Divergence to act as a regularizer over the covariance. When the target covariance is unknown and cannot be set as the prior, the calibrated formulation gives the optimal solution $\widehat{\Sigma}_Y(x) \approx \dfrac{\Sigma^{(\texttt{prior})}_Y (X) + \Sigma_Y(x)}{2}$. We can observe this in the graphic below. Unlike the negative log-likelihood which shows significant fluctuations, the KL divergence demonstrates stability in the predicted covariance. This is because the prior anchors the predicted covariance, preventing disruptions. 
 
 <video class="responsive-video" controls loop autoplay muted>
   <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/videos/toss/homoscedastic.mp4?raw=true" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-We make two observations:
-1. The negative log-likelihoood is more chaotic than the KL divergence.
-1. We observe a *residual covariance* across both, the negative log-likelihood and the KL divergence.
+However, we observe that a *residual covariance* across both, the negative log-likelihood and the KL divergence.
+Why does this happen? Our solution in Lemma 1 is reached only when the mean estimator has converged to the true value, and when exposed to multiple targets $y_i$ for the same $x$. However, this may not hold true practically because 
+1. Samples in a batch are *i.i.d* and it is unlikely that the same observation with different targets are there in the batch.
+1. The mean estimator may not have converged. Moreover, convergence is not uniform across the dataset!
 
-Unlike the negative log-likelihood which shows significant fluctuations, the KL divergence demonstrates stability in the predicted covariance. This is because the prior anchors the predicted covariance, preventing disruptions. We also note the existence of a residual covariance, as shown below.
+In practice, the predicted covariance is heavily dependent on the difference (residual) between the prediction and the target. Specifically, the optimal solution is:
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/residualterm.png?raw=true" alt="Residual term" style="width: 50%; height: auto;">
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/residualcov.png?raw=true" alt="Residual covariance" style="width: 70%; height: auto;">
+If this residual is large, it dominates the uncertainty estimate, pushing the model toward learning something that looks more like an error-driven "pseudo-covariance" than the true underlying covariance.
 
-The residual covariance arises due to the residual terms
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/residualterm.png?raw=true" alt="Residual term" style="width: 70%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/residualcov.png?raw=true" alt="Residual covariance" style="width: 100%; height: auto;">
+
+Details! The model essentially aligns the covariance with the error direction (the line between prediction and true value).
+This slows down optimization because now, the residual affects how the mean is learned. The larger the residual, the more it overpowers prior knowledge about the covariance, making updates less stable. While the negative log-likelihood fails, even the KL divergence is ineffective because it gets overwhelmed by the residuals, leading to unstable updates, especially with higher learning rates.
+
+Because KL Divergence inherits the same weaknesses as the standard negative log-likelihood (NLL), can we use the 2-Wasserstein distance as a better way to guide covariance learning? Intuitively, the 2-Wasserstein distance does not rely on the residual, making it much more stable. Moreover, it allows for a mechanism to directly supervise the covariance.
+
+<br>
+
+### 2-Wasserstein Distance
