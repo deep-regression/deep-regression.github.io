@@ -14,7 +14,15 @@ description: '<img src="https://iclr.cc/static/core/img/ICLR-logo.svg" alt="ICLR
     };
     </script>
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>  
+</script>
+
+<style>
+.responsive-video {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+</style>
 
 
 # Towards Self-Supervised Covariance Estimation in Deep Heteroscedastic Regression
@@ -52,8 +60,13 @@ A logical approach would be to replace each label with a distribution. Specifica
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/lemma1.png?raw=true" alt="Lemma 1" style="width: 70%; height: auto;">
 
-So what does this lemma imply? If we swap out $x_i, y_i$ with $x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$, *the predicted covariance is twice as much as the true covariance*. 
-<video controls loop autoplay muted>
+So what does this lemma imply? If we swap out $x_i, y_i$ with $x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$, *the predicted covariance is twice as much as the true covariance*. This also motivates the need for calibrating the KL divergence, such that the resulting optimal value is the same as the true covariance.
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/lemma1.png?raw=true" alt="Lemma 1" style="width: 70%; height: auto;">
+
+Moreover, this solution truly allows the KL Divergence to act as a regularizer.
+
+<video class="responsive-video" controls loop autoplay muted>
   <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/videos/toss/homoscedastic.mp4?raw=true" type="video/mp4">
   Your browser does not support the video tag.
 </video>
