@@ -52,7 +52,7 @@ These challenges stems from a key limitation of deep heteroscedastic regression:
 ## Supervision
 
 To gain intuition, we propose studying the simple task of learning a bivariate normal distribution, as shown below. Given samples from the unknown true distribution, how well do different supervision objectives optimize the predicted distribution to match the true distribution?
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/setup.png?raw=true" alt="setup" style="width: 70%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/setup.png?raw=true" alt="setup" style="width: 40%; height: auto;">
 
 We first turn to the KL divergence for supervising the learning of the covariance, which is a popular measure to quantify the difference between two distributions. Moreover, the KL divergence gives rise to popular machine learning objectives such as the cross entropy and negative log-likelihood. The KL divergence between two gaussian distributions $p$ and $q$ is defined as
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/KL.png?raw=true" alt="KL-simple" style="width: 70%; height: auto;">
@@ -74,4 +74,13 @@ With this formulation, $\widehat{\Sigma}_Y(x) \approx \Sigma_Y(x)$. Moreover, th
   Your browser does not support the video tag.
 </video>
 
-Unlike the negative log-likelihood which shows significant fluctuations, the KL divergence demonstrates stability in the predicted covariance. This is because the prior anchors the predicted covariance, preventing disruptions.
+We make two observations:
+1. The negative log-likelihoood is more chaotic than the KL divergence.
+1. We observe a *residual covariance* across both, the negative log-likelihood and the KL divergence.
+
+Unlike the negative log-likelihood which shows significant fluctuations, the KL divergence demonstrates stability in the predicted covariance. This is because the prior anchors the predicted covariance, preventing disruptions. We also note the existence of a residual covariance, as shown below.
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/residualcov.png?raw=true" alt="Residual covariance" style="width: 70%; height: auto;">
+
+The residual covariance arises due to the residual terms
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/residualterm.png?raw=true" alt="Residual term" style="width: 70%; height: auto;">
