@@ -54,6 +54,6 @@ A logical approach would be to replace each label with a distribution. Specifica
 
 So what does this lemma imply? If we swap out $x_i, y_i$ with $x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$, *the predicted covariance is twice as much as the true covariance*. 
 <video width="600" height="400" controls loop autoplay muted>
-  <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/video/toss/homoscedastic.mp4?raw=true" type="video/mp4">
+  <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/videos/toss/homoscedastic.mp4?raw=true" type="video/mp4">
   Your browser does not support the video tag.
 </video>
