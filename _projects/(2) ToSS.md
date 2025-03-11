@@ -48,5 +48,12 @@ We turn to the KL divergence for supervising the learning of the covariance, whi
 An astute reader may notice that the above fomulation is not very helpful for regression. This is because the mean and covariance are unknown for the target distribution. Instead, we rely on *i.i.d.* samples $(x_i, y_i)$ to supervise the covariance. We therefore ask, how can the KL Divergence be formulated for deep heteroscedastic
 regression? 
 
-A logical approach would be to replace each label with a distribution. Specifically, for a sample $xi, yi$ from the dataset, the pseudo target distribution can be set to $\mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X)$. However, this approach requires calibrating the KL Divergence since the optimal value for the covariance is not the same as the prior! This can be seen through a simple setting in Lemma 1.
+A logical approach would be to replace each label with a distribution. Specifically, for a sample $xi, yi$ from the dataset, the pseudo target distribution can be set to $\mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$. However, this approach requires calibrating the KL Divergence since the optimal value for the covariance is not the same as the prior! This can be seen through a simple setting in Lemma 1.
+
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/lemma1.png?raw=true" alt="Lemma 1" style="width: 70%; height: auto;">
+
+So what does this lemma imply? If we swap out $x_i, y_i$ with $x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$, *the predicted covariance is twice as much as the true covariance*. 
+<video width="600" height="400" controls loop autoplay muted>
+  <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/video/toss/homoscedastic.mp4?raw=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
