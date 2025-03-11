@@ -51,8 +51,11 @@ These challenges stems from a key limitation of deep heteroscedastic regression:
 
 ## Supervision
 
-We turn to the KL divergence for supervising the learning of the covariance, which is a popular measure to quantify the difference between two distributions. Moreover, the KL divergence gives rise to popular machine learning objectives such as the cross entropy and negative log-likelihood. The KL divergence between two gaussian distributions $p$ and $q$ is defined as
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/KL.png?raw=true" alt="KL-simple" style="width: 70%; height: auto;">.
+To gain intuition, we propose studying the simple task of learning a bivariate normal distribution, as shown below. Given samples from the unknown true distribution, how well do different supervision objectives optimize the predicted distribution to match the true distribution?
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/setup.png?raw=true" alt="setup" style="width: 70%; height: auto;">
+
+We first turn to the KL divergence for supervising the learning of the covariance, which is a popular measure to quantify the difference between two distributions. Moreover, the KL divergence gives rise to popular machine learning objectives such as the cross entropy and negative log-likelihood. The KL divergence between two gaussian distributions $p$ and $q$ is defined as
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/KL.png?raw=true" alt="KL-simple" style="width: 70%; height: auto;">
 An astute reader may notice that the above fomulation is not very helpful for regression. This is because the mean and covariance are unknown for the target distribution. Instead, we rely on *i.i.d.* samples $(x_i, y_i)$ to supervise the covariance. We therefore ask, how can the KL Divergence be formulated for deep heteroscedastic
 regression? 
 
@@ -60,7 +63,7 @@ A logical approach would be to replace each label with a distribution. Specifica
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/lemma1.png?raw=true" alt="Lemma 1" style="width: 70%; height: auto;">
 
-So what does this lemma imply? If we swap out $x_i, y_i$ with $x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$, *the predicted covariance is twice as much as the true covariance*. This also motivates the need for calibrating the KL divergence such that the resulting optimal value is the same as the true covariance.
+So what does this lemma imply? If we swap out $(x_i, y_i)$ with $(x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X)))$, *the predicted covariance is twice as much as the true covariance*. This also motivates the need for calibrating the KL divergence such that the resulting optimal value is the same as the true covariance.
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/calibratedKL.png?raw=true" alt="calibrated KL" style="width: 70%; height: auto;">
 
@@ -70,3 +73,5 @@ With this formulation, $\widehat{\Sigma}_Y(x) \approx \Sigma_Y(x)$. Moreover, th
   <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/videos/toss/homoscedastic.mp4?raw=true" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+Unlike the negative log-likelihood which shows significant fluctuations, the KL divergence demonstrates stability in the predicted covariance. This is because the prior anchors the predicted covariance, preventing disruptions.
