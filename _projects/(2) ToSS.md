@@ -64,7 +64,7 @@ So what does this lemma imply? If we swap out $x_i, y_i$ with $x_i, \mathcal{N}(
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/calibratedKL.png?raw=true" alt="calibrated KL" style="width: 70%; height: auto;">
 
-With this formulation, $\bighat{\Sigma}_Y(x) \approx \Sigma_Y(x)$. Moreover, this solution truly allows the KL Divergence to act as a regularizer over the covariance. When the target covariance is unknown and cannot be set as the prior, the calibrated formulation gives the optimal solution $\bighat{\Sigma}_Y(x) \approx \frac{\Sigma^{(\texttt{prior})}_Y (X) + \Sigma_Y(x)}{2}$. We can observe this in the graphic below.
+With this formulation, $\widehat{\Sigma}_Y(x) \approx \Sigma_Y(x)$. Moreover, this solution truly allows the KL Divergence to act as a regularizer over the covariance. When the target covariance is unknown and cannot be set as the prior, the calibrated formulation gives the optimal solution $\widehat{\Sigma}_Y(x) \approx \dfrac{\Sigma^{(\texttt{prior})}_Y (X) + \Sigma_Y(x)}{2}$. We can observe this in the graphic below.
 
 <video class="responsive-video" controls loop autoplay muted>
   <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/videos/toss/homoscedastic.mp4?raw=true" type="video/mp4">
