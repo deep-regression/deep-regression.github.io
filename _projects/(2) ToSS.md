@@ -56,7 +56,7 @@ To gain intuition, we propose studying the simple task of learning a bivariate n
 
 <br>
 
-### KL Divergence
+#### KL Divergence
 
 We first turn to the KL divergence for supervising the learning of the covariance, which is a popular measure to quantify the difference between two distributions. Moreover, the KL divergence gives rise to popular machine learning objectives such as the cross entropy and negative log-likelihood. The KL divergence between two gaussian distributions $p$ and $q$ is defined as
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/KL.png?raw=true" alt="KL-simple" style="width: 70%; height: auto;">
@@ -97,4 +97,9 @@ Because KL Divergence inherits the same weaknesses as the standard negative log-
 
 <br>
 
-### 2-Wasserstein Distance
+#### 2-Wasserstein Distance
+
+The 2-Wasserstein distance measures how different two probability distributions are by considering both their mean differences and covariance structures. It provides a more stable way to compare distributions compared to KL divergence, as it captures overall shape differences rather than just pointwise mismatches. For two multivariate normal distributions, the 2-Wasserstein distance is defined as 
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/wass-eqn.png?raw=true" alt="Wasserstein Equation" style="width: 50%; height: auto;">
+
+This formulation, however, requires computing the root of a matrix, which typically involves eigendecomposition. Unfortunately, the eigendecomposition in popular deep learning frameworks can potentially lead to unstable gradients. In fact, if the two distributions are commutative, then $\mathcal{W}_2(\mathcal{N}_1, \mathcal{N}_2) = ||\mu_1 - \mu_2||^2 + ||\Sigma_1^{1/2} - \Sigma_2^{1/2}||^2_F$.
