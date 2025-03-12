@@ -65,7 +65,7 @@ regression?
 
 A logical approach would be to replace each label with a distribution. Specifically, for a sample $xi, yi$ from the dataset, the pseudo target distribution can be set to $\mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X))$. However, this approach requires calibrating the KL Divergence since the optimal value for the covariance is not the same as the prior! This can be seen through a simple setting in Lemma 1.
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/lemma1.png?raw=true" alt="Lemma 1" style="width: 70%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/lemma1.png?raw=true" alt="Lemma 1" style="width: 80%; height: auto;">
 
 So what does this lemma imply? If we swap out $(x_i, y_i)$ with $(x_i, \mathcal{N}(yi, \Sigma^{(\texttt{prior})}_Y (X)))$, *the predicted covariance is twice as much as the true covariance*. This also motivates the need for calibrating the KL divergence such that the resulting optimal value is the same as the true covariance.
 
@@ -104,4 +104,6 @@ The 2-Wasserstein distance measures how different two probability distributions 
 
 This formulation, however, requires computing the root of a matrix, which typically involves eigendecomposition. Unfortunately, the eigendecomposition in popular deep learning frameworks can potentially lead to unstable gradients. In fact, if the two distributions are commutative, then $\mathcal{W}_2(\mathcal{N}_1, \mathcal{N}_2) = \parallel \mu_1 - \mu_2 \parallel^2 + \parallel \Sigma_1^{1/2} - \Sigma_2^{1/2} \parallel ^2_F$. But what does it mean for two distributions to be commutative? When two matrices commute, it means that $AB=BA$, which implies that applying one transformation first and then the other gives the same result as applying them in the reverse order. Intuitively, it means that the two covariance matrices share the same eigenvectors, and transform the data along the same axes. What might differ is the degree of transformation, which corresponds to different eigenvectors. However, assuming commutativity just to avoid eigendecomposition is a very strong assumption. It essentially means that the structure of the covariance is known a-priori! Is it still possible to avoid eigendecomposition for non-commutative matrices? With theorem 1, we show that $\mathcal{W}_2(\mathcal{N}_1, \mathcal{N}_2) \leq \parallel \mu_1 - \mu_2 \parallel^2 + \parallel \Sigma_1^{1/2} - \Sigma_2^{1/2} \parallel ^2_F$ for any set of covariance matrices!
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/theorem1.png?raw=true" alt="Theorem 1" style="width: 70%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/theorem1.png?raw=true" alt="Theorem 1" style="width: 80%; height: auto;">
+
+Theorem 1 is significant from a practical viewpoint. The bound allows us to extend the simplification for the case of commutative matrices to the more general case of non-commutative matrices. By reducing the upper bound on the 2-Wasserstein distance, we also reduce the true distance between two distributions! Finally, the bound removes eigendecomposition, making it significant since optimization is inherently more stable.
