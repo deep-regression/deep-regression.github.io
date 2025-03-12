@@ -106,4 +106,11 @@ This formulation, however, requires computing the root of a matrix, which typica
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/theorem1.png?raw=true" alt="Theorem 1" style="width: 80%; height: auto;">
 
-Theorem 1 is significant from a practical viewpoint. The bound allows us to extend the simplification for the case of commutative matrices to the more general case of non-commutative matrices. By reducing the upper bound on the 2-Wasserstein distance, we also reduce the true distance between two distributions! Finally, the bound removes eigendecomposition, making it significant since optimization is inherently more stable.
+Theorem 1 is significant from a practical viewpoint. The bound allows us to extend the simplification for the case of commutative matrices to the more general case of non-commutative matrices. By doing so, we remoive eigendecomposition and make the optimization more stable. Finally, reducing this bound also reduces the true 2-Wasserstien distance between two distributions!
+
+So how does the 2-Wasserstein compare with the KL Divergence? We study this through our toy example:
+
+<video class="responsive-video" controls loop autoplay muted>
+  <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/videos/toss/homoscedastic-full.mp4?raw=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
