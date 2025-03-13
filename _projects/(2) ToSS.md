@@ -139,3 +139,17 @@ Here’s how it works:
 Why does this work? The network spends a significant amount of time trying to identify patterns from just the residuals. This may not even converge to a reasonable value! By explicitly encoding patterns within the dataset, we provide a much stronger signal to supervise the covariance.
 
 We now have all the ingredients needed for self-supervision! For each sample, we obtain a pseudo-label for the covariance, which is trained using the 2-Wasserstein distance upper bound.
+
+
+<br><br>
+
+## Experiments
+
+Does using self-supervision truly retain accuracy while being significantly cheaper computationally? We study this through a similar setup as TIC-TAC. We conduct experiments across real and synthetic datasets, spanning univariate and multivariate analysis.
+
+<details>
+  <summary> <strong>Univariate</strong> </summary>
+
+Placeholder
+
+</details>
