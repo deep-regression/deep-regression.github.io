@@ -114,3 +114,5 @@ So how does the 2-Wasserstein compare with the KL Divergence? We study this thro
   <source src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/videos/toss/homoscedastic-full.mp4?raw=true" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+We make two key observations: at higher learning rates, the negative log-likelihood and the KL divergence suffer from unstable optimization. This happens samples not aligned with respect to the predicted covariance tend to destabilize it, since these samples are considered *very far* from the true distribution. In contrast, the 2-Wasserstein distance allows for smoother convergence since it does not depend on residuals. The 2-Wasserstein benefits from direct supervision of the covariance. Moreover, if the prior covariance is reasonably close to the true covariance, we also get lower likelihood values!
