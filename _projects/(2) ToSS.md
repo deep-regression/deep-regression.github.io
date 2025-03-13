@@ -106,7 +106,7 @@ This formulation, however, requires computing the root of a matrix, which typica
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/theorem1.png?raw=true" alt="Theorem 1" style="width: 80%; height: auto;">
 
-Theorem 1 is significant from a practical viewpoint. The bound allows us to extend the simplification for the case of commutative matrices to the more general case of non-commutative matrices. By doing so, we remoive eigendecomposition and make the optimization more stable. Finally, reducing this bound also reduces the true 2-Wasserstien distance between two distributions!
+Theorem 1 is significant from a practical viewpoint. The bound allows us to extend the simplification for the case of commutative matrices to the more general case of non-commutative matrices. By doing so, we remove the eigendecomposition and make the optimization more stable. Finally, reducing this bound also reduces the true 2-Wasserstien distance between two distributions!
 
 So how does the 2-Wasserstein compare with the KL Divergence? We study this through our toy example:
 
@@ -116,3 +116,24 @@ So how does the 2-Wasserstein compare with the KL Divergence? We study this thro
 </video>
 
 We make two key observations: at higher learning rates, the negative log-likelihood and the KL divergence suffer from unstable optimization. This happens samples not aligned with respect to the predicted covariance tend to destabilize it, since these samples are considered *very far* from the true distribution. In contrast, the 2-Wasserstein distance allows for smoother convergence since it does not depend on residuals. The 2-Wasserstein benefits from direct supervision of the covariance. Moreover, if the prior covariance is reasonably close to the true covariance, we also get lower likelihood values!
+
+<br><br>
+
+## Towards Self-Supervision
+
+While we have studied objectives for supervision, we still need to find labels for the covariance! Such labels can often come from good prior knowledge about the task being solved. However without this prior, we need to find signals for the covariance within the data. We do this by looking at nearby examples and using their covariance as a proxy for the unknown true covariance. By doing so, we capture two key intuitions:
+
+1. The target has a high (co-)variance if it exhibits large variations in a small neighborhood of the input.
+2. The closer another input is to our input, the likelier it is that the corresponding target is a potential label for our input.
+
+We describe our algorithm and input below.
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/pseudolabel.png?raw=true" alt="Theorem 1" style="width: 100%; height: auto;">
+
+Here’s how it works:
+
+1. *Find Similar Data Points (Neighborhood Selection)*: For each input $x$, we find other similar inputs in the dataset. The similarity is measured using Mahalanobis distance, which takes into account both distance and spread (instead of just Euclidean distance). Finally, we interpret these distances probabilistically through the *softmax* operation. Neighbors with smaller distances are much likely to be neighbors in comparison to samples with larger distances. 
+
+2. *Compute the Variation in Their Outputs*: If an input has multiple similar neighbors with very different outputs, it suggests high variability. If all nearby points produce similar outputs, the model has lower variance in its prediction. Moreover, different neighbors contribute to different degrees. We use the probabilistic interpretation of neighbors to compute the *`expected'* covariance for out input sample.
+
+Why does this work? The network spends a significant amount of time trying to identify patterns from just the residuals. This may not even converge to a reasonable value! By explicitly encoding patterns within the dataset, we provide a much stronger signal to supervise the covariance.
