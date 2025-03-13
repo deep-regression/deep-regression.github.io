@@ -128,7 +128,7 @@ While we have studied objectives for supervision, we still need to find labels f
 
 We describe our algorithm and input below.
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/pseudolabel.png?raw=true" alt="Theorem 1" style="width: 100%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/pseudolabel.png?raw=true" alt="Pseudo Label" style="width: 80%; height: auto;">
 
 Here’s how it works:
 
@@ -137,3 +137,5 @@ Here’s how it works:
 2. *Compute the Variation in Their Outputs*: If an input has multiple similar neighbors with very different outputs, it suggests high variability. If all nearby points produce similar outputs, the model has lower variance in its prediction. Moreover, different neighbors contribute to different degrees. We use the probabilistic interpretation of neighbors to compute the *`expected'* covariance for out input sample.
 
 Why does this work? The network spends a significant amount of time trying to identify patterns from just the residuals. This may not even converge to a reasonable value! By explicitly encoding patterns within the dataset, we provide a much stronger signal to supervise the covariance.
+
+We now have all the ingredients needed for self-supervision! For each sample, we obtain a pseudo-label for the covariance, which is trained using the 2-Wasserstein distance upper bound.
