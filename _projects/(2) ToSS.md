@@ -170,8 +170,28 @@ We re-use the same setup as TIC-TAC for our multivariate experiments. We compare
 
 Finally, we compare the compute time and memory requirements across all the methods. We observe that the 2-Wasserstein distance retains accuracy in comparison to the state-of-the-art while being computationally cheaper.
 
-
-
 </details>
 
 <br><br>
+
+<details>
+    <summary> <strong>UCI Regression</strong> </summary>
+
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/uci.png?raw=true" alt="TIC univariate" style="width: 199%; height: auto;">
+
+    We conduct experiments on datasets from the UCI Regression repository, and show that our analysis from the synthetic examples also translate to real world datasets. Not only is the 2-Wasserstein accurate, but also computationally cheaper. Results with standard deviation are available in the appendix.
+</details>
+
+<br><br>
+
+<details>
+    <summary> <strong>2D Human Pose Estimation</strong> </summary>
+
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-qual.png?raw=true" alt="TIC univariate" style="width: 100%; height: auto;">
+
+    We use two architectures: ViTPose and Stacked Hourglass for our studies in human pose estimation. We provide qualitative and quantitative results and show that TIC accurately learns the correlations underlying various human joints. Our qualitative results specifically show that TIC accurately localises the head given the location of other joints. This is especially true for complex poses. Our quantitative results show that TIC scales to both, convolutional and transformer based architectures and outperforms state-of-the-art in learning correlations across various human joints.
+
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-quant.png?raw=true" alt="TIC univariate" style="width: 100%; height: auto;">
+
+
+</details>
