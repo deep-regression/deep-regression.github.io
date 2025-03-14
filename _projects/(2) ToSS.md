@@ -150,9 +150,28 @@ Does using self-supervision truly retain accuracy while being significantly chea
 <details>
   <summary> <strong>Univariate</strong> </summary>
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/univariate.png?raw=true" alt="ToSS univariate" style="width: 100%; height: auto;">
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/univariate.png?raw=true" alt="ToSS univariate" style="width: 80%; height: auto;">
 
 
-We learn constant and varying amplitude sinusoidal with heteroscedastic noise. However, we observe that self-supervision converges much faster, fitting the sinsusoidals in a smaller number of epochs. In contrast, while TIC did fit the sinusoidals, it takes significantly more number of epochs to converge.
+We learn constant and varying amplitude sinusoidal with heteroscedastic noise. We observe that self-supervision converges much faster, fitting the sinsusoidals in a smaller number of epochs. In contrast, while TIC did fit the sinusoidals, it takes significantly more number of epochs to converge.
 
 </details>
+
+<br><br>
+
+<details>
+  <summary> <strong>Multivariate</strong> </summary>
+
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/multivariate.png?raw=true" alt="Multivariate" style="width: 45%; height: auto;">
+ 
+We re-use the same setup as TIC-TAC for our multivariate experiments. We compare different methods simulating increasing dimensionality of the data. Our quantitative results highlight two things: not only does the 2-Wasserstein bound have better accuracy of the mean, it also learns the covariance accurately in fewer epochs when compared to baseline methods. Moreover, the 2-Wasserstein bound also performs better in comparison to the original 2-Wasserstein distance between non-commutative covariance matrices.
+
+  <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/multivariate-compute.png?raw=true" alt="Multivariate-compute" style="width: 45%; height: auto;">
+
+Finally, we compare the compute time and memory requirements across all the methods. We observe that the 2-Wasserstein distance retains accuracy in comparison to the state-of-the-art while being computationally cheaper.
+
+
+
+</details>
+
+<br><br>
