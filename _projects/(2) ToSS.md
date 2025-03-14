@@ -150,6 +150,9 @@ Does using self-supervision truly retain accuracy while being significantly chea
 <details>
   <summary> <strong>Univariate</strong> </summary>
 
-Placeholder
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/univariate.png?raw=true" alt="ToSS univariate" style="width: 100%; height: auto;">
+
+
+We learn constant and varying amplitude sinusoidal with heteroscedastic noise. However, we observe that self-supervision converges much faster, fitting the sinsusoidals in a smaller number of epochs. In contrast, while TIC did fit the sinusoidals, it takes significantly more number of epochs to converge.
 
 </details>
