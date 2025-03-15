@@ -209,3 +209,28 @@ Our study is best concluded by the following points:
 🔹 The 2-Wasserstein bound provides a stable way to optimize covariance estimation, avoiding the pitfalls of KL divergence and NLL.
 🔹 Our simple neighborhood-based heuristic generates effective pseudo-labels, enabling self-supervised learning.
 🔹 The result? A computationally efficient approach that improves both accuracy and convergence in deep heteroscedastic regression!
+
+<br><br>
+## Acknowledgement
+
+We thank the reviewers, for their valuable comments and insights. We also thank [Reyhaneh Hosseininejad](https://www.linkedin.com/in/reyhaneh-hosseininejad-a2b54b138) for her help in preparing the paper.
+
+This research is funded by the Swiss National Science Foun- dation (SNSF) through the project *Narratives from the Long Tail: Transforming Access to Audiovisual Archives (Grant: CRSII5 198632)*. The project description is available on: [https://www.futurecinema.live/project/](https://www.futurecinema.live/project/)
+
+<br><br>
+
+## Citation
+
+If our work is useful, please consider citing the accompanying paper and starring our code on GitHub!
+
+```
+@inproceedings{
+shukla2025towards,
+title={Towards Self-Supervised Covariance Estimation in Deep Heteroscedastic Regression},
+author={Megh Shukla and Aziz Shameem and Mathieu Salzmann and Alexandre Alahi},
+booktitle={The Thirteenth International Conference on Learning Representations},
+year={2025},
+url={https://openreview.net/forum?id=Q1kPHLUbhi}
+}
+```
+<br>
