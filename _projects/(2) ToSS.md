@@ -204,11 +204,11 @@ Finally, we compare the compute time and memory requirements across all the meth
 
 Our study is best concluded by the following points:
 
-🔹 Traditional methods struggle to estimate covariance accurately without supervision.
-🔹 We show how the KL divergence can be calibrated for regularization, but noted its sensitive to residuals.
-🔹 The 2-Wasserstein bound provides a stable way to optimize covariance estimation, avoiding the pitfalls of KL divergence and NLL.
-🔹 Our simple neighborhood-based heuristic generates effective pseudo-labels, enabling self-supervised learning.
-🔹 The result? A computationally efficient approach that improves both accuracy and convergence in deep heteroscedastic regression!
+🔹 Traditional methods struggle to estimate covariance accurately without supervision. <br>
+🔹 We show how the KL divergence can be calibrated for regularization, but noted its sensitive to residuals.<br>
+🔹 The 2-Wasserstein bound provides a stable way to optimize covariance estimation, avoiding the pitfalls of KL divergence and NLL.<br>
+🔹 Our simple neighborhood-based heuristic generates effective pseudo-labels, enabling self-supervised learning.<br>
+🔹 The result? A computationally efficient approach that improves both accuracy and convergence in deep heteroscedastic regression!<br>
 
 <br><br>
 ## Acknowledgement
