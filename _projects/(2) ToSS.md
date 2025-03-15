@@ -187,11 +187,25 @@ Finally, we compare the compute time and memory requirements across all the meth
 <details>
     <summary> <strong>2D Human Pose Estimation</strong> </summary>
 
-    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-qual.png?raw=true" alt="TIC univariate" style="width: 100%; height: auto;">
+    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/toss/humanpose.png?raw=true" alt="Human Pose results" style="width: 80%; height: auto;">
 
-    We use two architectures: ViTPose and Stacked Hourglass for our studies in human pose estimation. We provide qualitative and quantitative results and show that TIC accurately learns the correlations underlying various human joints. Our qualitative results specifically show that TIC accurately localises the head given the location of other joints. This is especially true for complex poses. Our quantitative results show that TIC scales to both, convolutional and transformer based architectures and outperforms state-of-the-art in learning correlations across various human joints.
+    In this experiment, we don’t highlight self-supervision for its computational efficiency. Instead, we showcase its potential in a hybrid training setup to push the boundaries of state-of-the-art methods. Our initial attempts at self-supervised learning didn’t quite match the performance of TIC. We suspect this is due to the pseudo-labels being inaccurate, since they were derived from a low-dimensional representation of the input images.
 
-    <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/tictac/hpe-quant.png?raw=true" alt="TIC univariate" style="width: 100%; height: auto;">
+    However, this led us to an alternative approach: a hybrid training paradigm. By pre-training with self-supervision and then transitioning to TIC (trained using the negative log-likelihood), we observed significant advantages—preserving the benefits of both the 2-Wasserstein bound and NLL-TIC.
 
+    As illustrated, we first train our models using self-supervision for 20 epochs with the TIC parameterization. After that, we switch to the negative log-likelihood, which allows greater flexibility in optimizing the covariance. The results show that the hybrid approach outperforms standalone methods, achieving both low mean square error and low negative log-likelihood.
 
+    This experiment underscores the power of combining different training strategies rather than relying solely on one. Hybrid training could be a promising direction for further improving deep learning models.
 </details>
+
+<br><br>
+
+## Conclusion
+
+Our study is best concluded by the following points:
+
+🔹 Traditional methods struggle to estimate covariance accurately without supervision.
+🔹 We show how the KL divergence can be calibrated for regularization, but noted its sensitive to residuals.
+🔹 The 2-Wasserstein bound provides a stable way to optimize covariance estimation, avoiding the pitfalls of KL divergence and NLL.
+🔹 Our simple neighborhood-based heuristic generates effective pseudo-labels, enabling self-supervised learning.
+🔹 The result? A computationally efficient approach that improves both accuracy and convergence in deep heteroscedastic regression!
