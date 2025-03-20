@@ -6,6 +6,15 @@ image: https://raw.githubusercontent.com/deep-regression/deep-regression.github.
 description: '<img src="https://icml.cc/media/Press/ICML-logo.svg" alt="ICML Logo" style="width: 100px; height: auto;">'
 ---
 
+<style>
+.responsive-video {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+</style>
+
+
 # TIC-TAC: A Framework for Improved Covariance Estimation in Deep Heteroscedastic Regression
 <br><br>
 <span style="font-size:20px;">**Megh Shukla**, Mathieu Salzmann, Alexandre Alahi <br>
