@@ -84,3 +84,40 @@ This comparison compares multimodal predictions by different methods through Mot
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/ranking.png?raw=true" alt="Sampling Comparison" style="width: 100%; height: auto;">
 
 MotionMap predicts the confidence for different modes through local maxima in the heatmap. Modes with higher confidence have peaks of higher intensity in the predicted MotionMap. This allows us to rank different predictions based on the confidence as shown. Predictions closed to the ground truth motion have higher confidence, with rare modes and potentially unnatural motions having lower intensity peaks in MotionMap.
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/uncertainty.png?raw=true" alt="Sampling Comparison" style="width: 100%; height: auto;">
+
+We also visualize the uncertainty learnt by MotionMap. Not only do we introduce heteroscedastic modelling, by introducing the concept of mode and forecast, we can also improve the semantics behind the learnt uncertainty. Not only does MotionMap predict the confidence of each mode, the uncertainty network predicts the uncertainty for the pose sequence conditioned on the mode. This is important since without conditioning on the mode, previous methods counterintuitively showed that homoscedastic modelling is better than heteroscedastic modelling. Intuitively, since the predicted motion is multimodal, conditioning on a mode prevents the learnt uncertainty from averaging across all the modes.
+
+In this figure, we note two observations. First, joints with a higher degree of mobility have larger uncertainty estimates. This is expected since mobile joints have a larger range of motion. Second, we highlight the role of the nose as a joint that indicates the orientation of the person. We note that the uncertainty for the nose is higher for the pose sequence which involves a faster turn in comparison to the motion with a slower turn.
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/controllability.png?raw=true" alt="Controllability" style="width: 100%; height: auto;">
+
+MotionMap can be used in tandem with metadata to control the generated motion sequence. For datasets such as Human 3.6M which come with action labels, we can establish a duality between the 2-D embeddings of pose sequences and their action labels. Therefore, predicting the MotionMap also corresponds to predicting the likelihood of different actions as the forecasted motion for the observed pose sequence. Consequently, downstream tasks can control the generation of different futures by choosing from within the likeliest actions, which we show in the figure above. This allows us to incorporate user preference in the pose forecasting pipeline.
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/diversity.png?raw=true" alt="Controllability" style="width: 100%; height: auto;">
+
+We conclude our qualitative study by visualizing the diversity of the predicted motions. By using the same decoder as state-of-the-art methods like BeLFusion, we note that MotionMap predicts diverse yet realistic future pose sequences. 
+
+<br><br>
+
+## Wrapping Up: A Smarter Approach to Human Pose Forecasting
+
+In this work, we tackled the challenge of making human pose forecasting well-posed and more efficient. Our proposed representation, MotionMap, explicitly encodes multiple possible future motions while also quantifying their confidence. This allows us to distinguish more likely movements from less probable ones, also offering a structured approach to uncertainty in motion prediction. By modeling the spread of future motions directly, MotionMap eliminates the need for excessive random sampling, making it both sample-efficient and robust. We demonstrated how this approach leads to more diverse yet realistic motion predictions, ultimately improving reliability in real-world applications. Beyond accuracy, MotionMap also paves the way for controllable pose forecasting and practical uncertainty estimation—two aspects that could be highly valuable in domains like robotics, animation, and autonomous systems. Through comprehensive analysis, we showcased the effectiveness of MotionMap in enhancing both the safety and reliability of human motion forecasting. {% include elements/highlight.html text="<em>Our takeway? MotionMap shows that heatmaps and codebooks can outperform diffusion and repeated sampling in human pose forecasting!</em>" %} Looking ahead, we believe this paradigm shift can inspire future research in making motion prediction more structured, interpretable, and useful in real-world scenarios.
+
+<br><br>
+
+## Citation
+
+If our work is useful, please consider citing the accompanying paper and starring our code on GitHub!
+
+```
+@inproceedings{
+hosseininejad2025motionmap,
+title={MotionMap: Representing Multimodality in Human Pose Forecasting},
+author={Reyhaneh Hosseininejad and Megh Shukla and Saeed Saadatnejad and Mathieu Salzmann and Alexandre Alahi},
+booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+year={2025}
+}
+```
+<br>
