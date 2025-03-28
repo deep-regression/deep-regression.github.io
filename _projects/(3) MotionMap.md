@@ -40,7 +40,6 @@ Before diving deeper into our methodology, let's first clarify what we mean by "
 
 <div style="text-align: center;">{% include elements/highlight.html text="<em>Multimodality in human pose forecasting refers to a diverse yet realistic set of future actions with a
 logical transition from an observed pose sequence.</em>" %}</div> <br>
-<br>
 
 But how exactly can we efficiently encode multimodality? And how do we effectively distinguish between likely and unlikely future motions? Answering these questions could lead to more robust, realistic, and practical pose forecasting solutions.
 
@@ -81,3 +80,7 @@ Apart from the quantitative evaluation, we also provide extensive qualititative 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/sampling.png?raw=true" alt="Sampling Comparison" style="width: 100%; height: auto;">
 
 This comparison compares multimodal predictions by different methods through MotionMap. We do this by embedding multimodal predictions for three different samples *(a, b, c)* on their respective ground truth MotionMap. We confirm our quantitative evaluation: methods that focus on high diversity do so at the cost of realism, predicting transitions that are non-existent in the dataset. Although diffusion based methods are much more realistic, they fail to capture all different transitions, including some that are rare. In constrast, MotionMap, the method successfully captures diversity and realism.
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/ranking.png?raw=true" alt="Sampling Comparison" style="width: 100%; height: auto;">
+
+MotionMap predicts the confidence for different modes through local maxima in the heatmap. Modes with higher confidence have peaks of higher intensity in the predicted MotionMap. This allows us to rank different predictions based on the confidence as shown. Predictions closed to the ground truth motion have higher confidence, with rare modes and potentially unnatural motions having lower intensity peaks in MotionMap.
