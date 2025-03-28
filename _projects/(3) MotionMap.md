@@ -38,8 +38,8 @@ To overcome this limitation, it becomes essential to rethink human pose forecast
 
 Before diving deeper into our methodology, let's first clarify what we mean by "multimodality" in human pose forecasting. In simple terms, multimodality refers to the presence of multiple distinct yet plausible future motions from a single observed sequence. Imagine seeing a person standing still—this single pose could naturally lead to multiple realistic futures, such as walking forward, turning around, or even sitting down. Each of these actions represents a different "mode." Importantly, each mode comprises a set of likely and coherent motions logically connected to the observed pose. By recognizing these diverse yet realistic futures, multimodal forecasting models can offer richer and more informative predictions. Formally, we define multimodality as <br>
 
-{% include elements/highlight.html text="Multimodality in human pose forecasting refers to a diverse yet realistic set of future actions with a
-logical transition from an observed pose sequence." %} <br>
+{% include elements/highlight.html text="<em>Multimodality in human pose forecasting refers to a diverse yet realistic set of future actions with a
+logical transition from an observed pose sequence.</em>" %} <br>
 
 But how exactly can we efficiently encode multimodality? And how do we effectively distinguish between likely and unlikely future motions? Answering these questions could lead to more robust, realistic, and practical pose forecasting solutions.
 
@@ -58,3 +58,9 @@ But how do we learn MotionMap for each sample, and how exactly do we use MotionM
 ## Methodology
 
 <img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/schematic.png?raw=true" alt="Overview" style="width: 100%; height: auto;">
+
+Let's break down how MotionMap works. First, we use an autoencoder which is a model that learns how to compress and then reconstruct human motion sequences. This autoencoder takes as input the observation and one of the many multimodal ground truths, with the goal of compressining and reconstructing the entire pose sequence (input + multimodal ground truth). During training, the autoencoder captures key patterns from past (observed) and future (predicted) skeletal poses. *Essentially, it becomes good at recognizing realistic motion transitions by seeing many examples of how poses evolve.*
+
+The catch is, during actual prediction, we won't know the future poses. So how do we still manage to predict realistic future movements? Our key intuition is that even if we don't have the future pose, what we need is a latent that describes the future pose. This is where our MotionMap comes to the rescue. With MotionMap, we represent an observation's multimodal ground truth through heatmaps. The way we construct this is by first encoding each multimodal ground truth pose sequence into a vector using the autoencoder. Next, we use t-SNE, a popular dimensionality reduction technique, to embed each encoding into two dimensions. It is these two dimensional encodings that we represent through local maxima in MotionMap. We train a model that predicts the MotionMap directly from the observed poses. On the predicted MotionMap, the maxima represent the likeliest future motions corresponding to a given observation. However, how do we go from maxima to the predicted future pose sequence?
+
+To convert these heatmaps into actual predicted movements, we use a codebook. The codebook is a dictionary / map that links each maxima on the heatmap to its corresponding embedding (which was reduced to 2D earlier). By looking up the heatmap's peaks in this dictionary, we can quickly obtain the latent embedding for the pose sequence. As a result, we have the final piece in the jigsaw puzzle to make the autoencoder work at test time: the missing *future* latent obtained from MotionMap.
