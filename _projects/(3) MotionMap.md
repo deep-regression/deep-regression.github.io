@@ -39,7 +39,8 @@ Predicting human motion from observed skeletal poses seems straightforward, yet 
 Before diving deeper into our methodology, let's first clarify what we mean by "multimodality" in human pose forecasting. In simple terms, multimodality refers to the presence of multiple distinct yet plausible future motions from a single observed sequence. Imagine seeing a person standing still—this single pose could naturally lead to multiple realistic futures, such as walking forward, turning around, or even sitting down. Each of these actions represents a different "mode." Importantly, each mode comprises a set of likely and coherent motions logically connected to the observed pose. By recognizing these diverse yet realistic futures, multimodal forecasting models can offer richer and more informative predictions. Formally, we define multimodality as <br>
 
 <div style="text-align: center;">{% include elements/highlight.html text="<em>Multimodality in human pose forecasting refers to a diverse yet realistic set of future actions with a
-logical transition from an observed pose sequence.</em>" %} <br>
+logical transition from an observed pose sequence.</em>" %}</div> <br>
+<br>
 
 But how exactly can we efficiently encode multimodality? And how do we effectively distinguish between likely and unlikely future motions? Answering these questions could lead to more robust, realistic, and practical pose forecasting solutions.
 
@@ -47,7 +48,7 @@ But how exactly can we efficiently encode multimodality? And how do we effective
 
 ## MotionMap
 
-<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/pullfig.png?raw=true" alt="MotionMap Idea" style="width: 100%; height: auto;"></div>
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/pullfig.png?raw=true" alt="MotionMap Idea" style="width: 100%; height: auto;">
 
 That's exactly where the MotionMap representation comes in, marking a new way of deep regression. We can think of MotionMap as a kind of visual map, specifically a heatmap that clearly shows all the different paths human motion can realistically take from any observed pose. On this map, distinct peaks mark the most probable future movements, directly learning from the actual transitions observed in the training data. Unlike traditional methods that need countless random predictions, MotionMap naturally captures multiple scenarios at once, even highlighting the rare yet crucial motions we can't afford to overlook. With this representation, we predict the explicit distribution over different future sequences for an observation. Why is this important? First, we know the exact number of future motions per sample, allowing us to be much more **efficient** with our predictions. Second, we also know which future is more likely since the intensity of different peaks can be treated as a measure of confidence. Third, MotionMap can be used in tandem with metadata such as action labels for **controllable** human pose forecasting. For instance, we can map different confidences to different actions, allowing the user to generate motion sequences based on the action and confidence. Fourth, MotionMap predicts the confidence of the mode, and the uncertainty in the motion conditioned on the mode. As a result, we get accurate uncertainty estimates allowing for **safe** deployment. Finally, our quantitative results show that MotionMap is **robust** and is state-of-the-art in human pose forecasting.
 
