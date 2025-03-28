@@ -28,4 +28,14 @@ description: '<img src="https://na.eventscloud.com/file_uploads/33157a7e4788e837
 <hr style="border: 1px solid gray;">
 <br><br>
 
-<a href="https://deep-regression.github.io/files/papers/arxiv/MotionMap.pdf" target="_blank">[Paper]</a>
+## Problem Statement
+
+Predicting human motion from observed skeletal poses seems straightforward, yet beneath the surface lies an intriguing complexity: for any given pose sequence, an infinite number of possible future motions exist. This inherent multimodality challenges existing forecasting models, which typically rely on oversampling a large number of predictions. However, no matter how many futures are generated, these methods inevitably fail to cover all realistic possibilities, often missing critical or rare motions essential for real-world applications.
+
+To overcome this limitation, it becomes essential to rethink human pose forecasting. Rather than aiming to capture endless hypothetical futures, a more practical approach is to explicitly learn and represent the realistic transitions observed in available data. By grounding multimodal predictions firmly within observed transitions, the forecasting task transitions from an ill-posed to a well-posed challenge.
+
+But how exactly can we efficiently encode these observed transitions? And how do we effectively distinguish between likely and unlikely future motions? Answering these questions could lead to more robust, realistic, and practical pose forecasting solutions.
+
+## MotionMap
+
+<img src="https://github.com/deep-regression/deep-regression.github.io/blob/master/files/images/motionmap/pullfig.png?raw=true" alt="MotionMap Idea" style="width: 100%; height: auto;">
