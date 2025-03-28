@@ -32,9 +32,16 @@ description: '<img src="https://na.eventscloud.com/file_uploads/33157a7e4788e837
 
 Predicting human motion from observed skeletal poses seems straightforward, yet beneath the surface lies an intriguing complexity: for any given pose sequence, an infinite number of possible future motions exist. This inherent multimodality challenges existing forecasting models, which typically rely on oversampling a large number of predictions. However, no matter how many futures are generated, these methods inevitably fail to cover all realistic possibilities, often missing critical or rare motions essential for real-world applications.
 
-To overcome this limitation, it becomes essential to rethink human pose forecasting. Rather than aiming to capture endless hypothetical futures, a more practical approach is to explicitly learn and represent the realistic transitions observed in available data. By grounding multimodal predictions firmly within observed transitions, the forecasting task transitions from an ill-posed to a well-posed challenge.
+To overcome this limitation, it becomes essential to rethink human pose forecasting. Rather than aiming to capture endless hypothetical futures, a more practical approach is to explicitly learn and represent the realistic transitions observed in available data. By grounding multimodal predictions firmly within observed transitions, the forecasting task transitions from an ill-posed to a well-posed challenge. But first, what does multimodality in human pose forecasting mean?
 
-But how exactly can we efficiently encode these observed transitions? And how do we effectively distinguish between likely and unlikely future motions? Answering these questions could lead to more robust, realistic, and practical pose forecasting solutions.
+## Multimodality in Human Pose Forecasting
+
+Before diving deeper into our methodology, let's first clarify what we mean by "multimodality" in human pose forecasting. In simple terms, multimodality refers to the presence of multiple distinct yet plausible future motions from a single observed sequence. Imagine seeing a person standing still—this single pose could naturally lead to multiple realistic futures, such as walking forward, turning around, or even sitting down. Each of these actions represents a different "mode." Importantly, each mode comprises a set of likely and coherent motions logically connected to the observed pose. By recognizing these diverse yet realistic futures, multimodal forecasting models can offer richer and more informative predictions. Formally, we define multimodality as <br>
+
+{% include elements/highlight.html text="Multimodality in human pose forecasting refers to a diverse yet realistic set of future actions with a
+logical transition from an observed pose sequence." %} <br>
+
+But how exactly can we efficiently encode multimodality? And how do we effectively distinguish between likely and unlikely future motions? Answering these questions could lead to more robust, realistic, and practical pose forecasting solutions.
 
 <br><br>
 
